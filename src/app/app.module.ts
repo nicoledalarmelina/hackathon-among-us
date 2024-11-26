@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { RegulatorioModule } from './features/regulatorio/regulatorio.module';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -12,7 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     SharedModule,
     RegulatorioModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ]
 })
 export class AppModule { }
