@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 import { PalavraChaveComponent } from "./features/regulatorio/palavra-chave/palavra-chave.component";
 import { NgModule } from "@angular/core";
-import { DashboardComponent } from "./features/regulatorio/dashboard/dashboard.component";
+import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 
 export const routes: Routes = [
   {
