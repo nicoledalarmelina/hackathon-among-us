@@ -1,0 +1,46 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+    margin-right: 1rem;
+
+    .chart {
+        padding: 1rem;
+        width: 60%;
+    }
+
+    .docs {
+        padding: 1rem;
+        width: 40%;
+
+        p {
+            font-size: 12px;
+            color: #384047;
+
+            &.bold {
+                font-weight: 700;
+            }
+        }
+
+        .total {
+            width: 20%;
+            padding: .5rem;
+            margin-top: 1rem;
+            background: #FFC779;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .number {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+.values {
+    margin-top: 1rem;
+}

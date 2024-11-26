@@ -36,7 +36,7 @@ $projeto-among-us-theme: mat.define-theme((
 // @include mat.color-variants-backwards-compatibility($projeto-among-us-theme);
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #ECEEEF; }
 
 * {
   font-family: 'Montserrat';
@@ -45,4 +45,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 p {
   font-size: 14px;
   margin: 0px;
+}
+
+.card {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
 }
