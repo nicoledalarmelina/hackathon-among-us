@@ -1,0 +1,23 @@
+.menu {
+    height: 100%;
+    width: 70px;
+    background-color: #FFF;
+    position: fixed;
+    box-shadow: 4px 0px 4px rgba(0, 0, 0, .25);
+    top: 66px;
+    display: flex;
+    justify-content: center;
+
+    .item {
+        height: 32px;
+        width: 40px;
+        background: #cee8ff;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #094E8C;
+        margin-top: 1rem;
+    }
+}
