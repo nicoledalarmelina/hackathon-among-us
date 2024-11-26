@@ -4,8 +4,47 @@
     position: fixed;
     padding: .5rem;
     background-color: #1666AE;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .first-column,
+    .second-column {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
 
     img {
         width: 13vw;
+    }
+    
+    .bars {
+        display: flex;
+        align-items: center;
+        width: 50px;
+        justify-content: center;
+        color: #CEE8FF;
+    }
+
+    .initial {
+        width: 40px;
+        height: 40px;
+        background: #CEE8FF;
+        margin-right: 1rem;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        color: #1666ae;
+    }
+
+    .username {
+        margin-right: 1.5rem;
+        font-weight: 700;
+        color: #CEE8FF;
     }
 }
