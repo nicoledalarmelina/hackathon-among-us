@@ -1,8 +1,10 @@
 <section class="menu">
-    <div class="item">
+    <div class="item" (click)="goTo('./'); selecionado = 'regulatorio'"
+        [ngClass]="{ 'selecionado': selecionado == 'regulatorio' }">
         <i class="fa-solid fa-section"></i>
     </div>
-    <div class="item" (click)="goTo('/palavra-chave')">
+    <div class="item" (click)="goTo('/palavra-chave'); selecionado = 'palavraChave'"
+        [ngClass]="{ 'selecionado': selecionado == 'palavraChave' }">
         <i class="fa-solid fa-key"></i>
     </div>
 </section>

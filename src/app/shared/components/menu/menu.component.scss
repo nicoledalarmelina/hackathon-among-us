@@ -12,7 +12,6 @@
     .item {
         height: 32px;
         width: 40px;
-        background: #cee8ff;
         border-radius: 5px;
         display: flex;
         align-items: center;
@@ -20,5 +19,9 @@
         cursor: pointer;
         color: #094E8C;
         margin-top: 1rem;
+
+        &.selecionado {
+            background: #cee8ff;
+        }
     }
 }
