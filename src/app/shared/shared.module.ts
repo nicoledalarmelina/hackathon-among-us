@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FileCardComponent } from './components/file-card/file-card.component';
 
 
@@ -11,6 +11,9 @@ import { FileCardComponent } from './components/file-card/file-card.component';
   ],
   exports: [
     FileCardComponent
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class SharedModule { }

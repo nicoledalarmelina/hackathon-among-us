@@ -1,1 +1,12 @@
-<p>file-card works!</p>
+<div class="card">
+    <section>
+        <p>{{ documento.tipoDocumento }}</p>
+        <img src="./assets/images/download-icon.svg">
+    </section>
+    <p>{{ documento.titulo }}</p>
+    <span>{{ documento.resumo }}</span>
+    <span class="data">
+        Vigente desde: {{ formatarData(documento.vigencia) }}
+    </span>
+    <button mat-stroked-button>Visualizar</button>
+</div>

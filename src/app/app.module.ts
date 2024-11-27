@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { RegulatorioModule } from './features/regulatorio/regulatorio.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +15,9 @@ import { MatTableModule } from '@angular/material/table';
     RegulatorioModule,
     MatButtonModule,
     MatTableModule
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class AppModule { }

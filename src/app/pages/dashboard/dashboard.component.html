@@ -1,6 +1,6 @@
 <app-breadcrumb [page]="'Regulatório'"></app-breadcrumb>
 
-<div class="row">
+<div class="row mr-1">
     <div class="card chart">
         Gráfico
     </div>
@@ -20,6 +20,20 @@
                 <p>Instituição financeira</p>
                 <p>Total</p>
             </div>
+
+            <div class="row" *ngFor="let documento of listaDocumentosRecuperados">
+                <p class="bold">{{ documento.uf }}</p>
+                <p class="bold">{{ documento.numeroRegistroContrato }}</p>
+                <p class="bold">{{ documento.numeroRegistroGarantia }}</p>
+                <p class="bold">{{ documento.numeroInstituicaoFinanceira }}</p>
+                <p class="bold highlight">{{ documento.total }}</p>
+            </div>
         </section>
+    </div>
+</div>
+
+<div class="row">
+    <div *ngFor="let documento of listaDocumentos">
+        <app-file-card [documento]="documento"></app-file-card>
     </div>
 </div>
