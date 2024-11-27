@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
-import { RegulatorioModule } from './features/regulatorio/regulatorio.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 
@@ -12,7 +11,6 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     CommonModule,
     SharedModule,
-    RegulatorioModule,
     MatButtonModule,
     MatTableModule
   ],

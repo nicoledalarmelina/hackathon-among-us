@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 
 export interface PeriodicElement {
   name: string;
@@ -25,7 +26,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-palavra-chave',
   standalone: true,
-  imports: [BreadcrumbComponent, MatTableModule],
+  imports: [BreadcrumbComponent, MatTableModule, MatButtonModule],
   templateUrl: './palavra-chave.component.html',
   styleUrl: './palavra-chave.component.scss'
 })

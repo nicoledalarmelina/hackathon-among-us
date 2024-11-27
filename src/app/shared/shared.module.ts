@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { FileCardComponent } from './components/file-card/file-card.component';
 
 
 
 @NgModule({
-  declarations: [FileCardComponent],
+  declarations: [],
   imports: [
     CommonModule
   ],
   exports: [
-    FileCardComponent
+    
   ],
   providers: [
     DatePipe
