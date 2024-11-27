@@ -32,8 +32,15 @@
     </div>
 </div>
 
-<div class="row">
-    <div *ngFor="let documento of listaDocumentos">
-        <app-file-card [documento]="documento"></app-file-card>
+<div class="arrow left" (click)="clickLeftArrow()" *ngIf="index > 0"><i class="fa-solid fa-angle-left"></i></div>
+<div class="arrow right" (click)="clickRightArrow()" *ngIf="totalIndexes > index + 1"><i
+        class="fa-solid fa-angle-right"></i></div>
+
+<section class="docs-carousel">
+    <!-- <div class="row" [ngStyle]="{ 'transform': 'translateX(-' + slidePositon + '%)' }"> -->
+    <div class="row carousel" [ngStyle]="{'transform': 'translate(' + slidePositon + 'vw)'}">
+        <div *ngFor="let documento of listaDocumentos" class="teste">
+            <app-file-card [documento]="documento"></app-file-card>
+        </div>
     </div>
-</div>
+</section>
