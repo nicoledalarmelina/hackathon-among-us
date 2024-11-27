@@ -56,6 +56,112 @@ export class DashboardComponent {
       resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
       vigencia: new Date(),
       base64: ""
+    },
+    <DocumentoRecuperado>{
+      titulo: "Resolução 217/22",
+      tipoDocumento: TipoDocumento.instituicaoFinanceira,
+      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
+      vigencia: new Date(),
+      base64: ""
+    },
+    <DocumentoRecuperado>{
+      titulo: "Resolução 217/22",
+      tipoDocumento: TipoDocumento.registroContrato,
+      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
+      vigencia: new Date(),
+      base64: ""
+    },
+    <DocumentoRecuperado>{
+      titulo: "Resolução 217/22",
+      tipoDocumento: TipoDocumento.registroGarantia,
+      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
+      vigencia: new Date(),
+      base64: ""
+    },
+    <DocumentoRecuperado>{
+      titulo: "Resolução 217/22",
+      tipoDocumento: TipoDocumento.registroContrato,
+      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
+      vigencia: new Date(),
+      base64: ""
+    },
+    <DocumentoRecuperado>{
+      titulo: "Resolução 217/22",
+      tipoDocumento: TipoDocumento.instituicaoFinanceira,
+      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
+      vigencia: new Date(),
+      base64: ""
+    },
+    <DocumentoRecuperado>{
+      titulo: "Resolução 217/22",
+      tipoDocumento: TipoDocumento.registroGarantia,
+      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
+      vigencia: new Date(),
+      base64: ""
+    },
+    <DocumentoRecuperado>{
+      titulo: "Resolução 217/22",
+      tipoDocumento: TipoDocumento.registroContrato,
+      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
+      vigencia: new Date(),
+      base64: ""
+    },
+    <DocumentoRecuperado>{
+      titulo: "Resolução 217/22",
+      tipoDocumento: TipoDocumento.instituicaoFinanceira,
+      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
+      vigencia: new Date(),
+      base64: ""
+    },
+    <DocumentoRecuperado>{
+      titulo: "Resolução 217/22",
+      tipoDocumento: TipoDocumento.registroGarantia,
+      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
+      vigencia: new Date(),
+      base64: ""
+    },
+    <DocumentoRecuperado>{
+      titulo: "Resolução 217/22",
+      tipoDocumento: TipoDocumento.registroContrato,
+      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
+      vigencia: new Date(),
+      base64: ""
+    },
+    <DocumentoRecuperado>{
+      titulo: "Resolução 217/22",
+      tipoDocumento: TipoDocumento.instituicaoFinanceira,
+      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
+      vigencia: new Date(),
+      base64: ""
+    },
+  ];
+
+  slidePositon: number = 0;
+  widthDoc: number = 18;
+  index: number = 0;
+  totalIndexes: number = 0;
+
+  ngOnInit() {
+    this.countDocs();
+  }
+
+  clickRightArrow() {
+    if (this.totalIndexes > this.index + 1) {
+      this.slidePositon -= 91.5;
+      this.index++;
     }
-  ]
+
+  }
+
+  clickLeftArrow() {
+    if (this.index > 0) {
+      this.slidePositon += 91.5;
+      this.index--;
+    }
+  }
+
+  countDocs() {
+    let count = this.listaDocumentos.length;
+    this.totalIndexes = Math.ceil(count / 5);
+  }
 }

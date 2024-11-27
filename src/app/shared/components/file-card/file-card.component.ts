@@ -1,11 +1,12 @@
 import { Component, Input, LOCALE_ID } from '@angular/core';
 import { DocumentoRecuperado } from '../../../core/models/documento-recuperado.model';
-import { DatePipe } from '@angular/common';
+import { TipoDocumento } from '../../../core/enums/tipoDocumento.enum';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-file-card',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './file-card.component.html',
   styleUrl: './file-card.component.scss'
 })
@@ -31,5 +32,13 @@ export class FileCardComponent {
     let mes = vigencia.getMonth();
 
     return `${vigencia.getDate()} de ${this.meses[mes]} de ${vigencia.getFullYear()}`;
+  }
+
+  retornarClasseTipo(tipoDocumento: TipoDocumento) {
+    switch (tipoDocumento) {
+      case TipoDocumento.instituicaoFinanceira: return 'instituicao-financeira';
+      case TipoDocumento.registroContrato: return 'registro-contrato';
+      case TipoDocumento.registroGarantia: return 'registro-garantia';
+    }
   }
 }

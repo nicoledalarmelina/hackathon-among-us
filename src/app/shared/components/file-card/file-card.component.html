@@ -1,9 +1,9 @@
-<div class="card">
+<div class="card documento-recuperado">
     <section>
-        <p>{{ documento.tipoDocumento }}</p>
+        <p [ngClass]="retornarClasseTipo(documento.tipoDocumento)">{{ documento.tipoDocumento }}</p>
         <img src="./assets/images/download-icon.svg">
     </section>
-    <p>{{ documento.titulo }}</p>
+    <p class="mt-1">{{ documento.titulo }}</p>
     <span>{{ documento.resumo }}</span>
     <span class="data">
         Vigente desde: {{ formatarData(documento.vigencia) }}
