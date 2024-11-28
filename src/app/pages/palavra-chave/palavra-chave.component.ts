@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { KeywordDialogComponent } from '../../shared/components/keyword-dialog/keyword-dialog.component';
+import { PalavraChaveService } from '../../services/palavra-chave.service';
 
 export interface PeriodicElement {
   name: string;
@@ -39,7 +40,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class PalavraChaveComponent {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private palavraChaveService: PalavraChaveService) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -78,4 +79,25 @@ export class PalavraChaveComponent {
     });
   }
 
+  getKeyrowdsList() {
+    this.palavraChaveService.obterPalavrasChave().subscribe({
+      next: (response) => {
+        {
+          if (response.listaPalavras) {
+            this.listaPalavras = response.listaPalavras;
+          }
+        }
+      }
+    })
+  }
+
+  deleteKeyword(id: number) {
+    this.palavraChaveService.excluirPalavraChave(id).subscribe({
+      next: (response) => {
+        if (response.id) {
+          //SUCESSO
+        }
+      }
+    })
+  }
 }
