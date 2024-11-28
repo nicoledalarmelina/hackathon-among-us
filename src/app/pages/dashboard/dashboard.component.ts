@@ -20,19 +20,19 @@ import { FileCardComponent } from '../../shared/components/file-card/file-card.c
 export class DashboardComponent {
 
   listaDocumentosRecuperados: ListaDocumentosRecuperados[] = [
-    <ListaDocumentosRecuperados>{ uf: 'AC', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'AP', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'BA', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'MA', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'MG', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'PB', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'PE', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'PI', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'PR', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'RJ', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'RR', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'SC', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'SP', numeroRegistroContrato: 1, numeroRegistroGarantia: 2, numeroInstituicaoFinanceira: 3, total: 6 },
+    // <ListaDocumentosRecuperados>{ uf: 'AC', numeroRegistroContrato: 1, total: 6 },
+    // <ListaDocumentosRecuperados>{ uf: 'AP', numeroRegistroContrato: 1, total: 6 },
+    // <ListaDocumentosRecuperados>{ uf: 'BA', numeroRegistroContrato: 1, total: 6 },
+    // <ListaDocumentosRecuperados>{ uf: 'MA', numeroRegistroContrato: 1, total: 6 },
+    <ListaDocumentosRecuperados>{ uf: 'MG', palavraChave: 'Detran', total: 6 },
+    // <ListaDocumentosRecuperados>{ uf: 'PB', numeroRegistroContrato: 1, total: 6 },
+    // <ListaDocumentosRecuperados>{ uf: 'PE', numeroRegistroContrato: 1, total: 6 },
+    // <ListaDocumentosRecuperados>{ uf: 'PI', numeroRegistroContrato: 1, total: 6 },
+    <ListaDocumentosRecuperados>{ uf: 'PR', palavraChave: 'financiamento', total: 6 },
+    // <ListaDocumentosRecuperados>{ uf: 'RJ', numeroRegistroContrato: 1, total: 6 },
+    // <ListaDocumentosRecuperados>{ uf: 'RR', numeroRegistroContrato: 1, total: 6 },
+    // <ListaDocumentosRecuperados>{ uf: 'SC', numeroRegistroContrato: 1, total: 6 },
+    <ListaDocumentosRecuperados>{ uf: 'SP', palavraChave: 'veículo', total: 6 },
   ];
 
   listaDocumentos: DocumentoRecuperado[] = [

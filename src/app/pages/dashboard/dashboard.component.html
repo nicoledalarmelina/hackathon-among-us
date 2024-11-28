@@ -15,17 +15,13 @@
         <section class="values column">
             <div class="row">
                 <p>UF</p>
-                <p>Registro de contrato</p>
-                <p>Registro de garantia</p>
-                <p>Instituição financeira</p>
-                <p>Total</p>
+                <p>Palavra-chave mais relevante</p>
+                <p>Total de docs recuperados</p>
             </div>
 
             <div class="row" *ngFor="let documento of listaDocumentosRecuperados">
                 <p class="bold">{{ documento.uf }}</p>
-                <p class="bold">{{ documento.numeroRegistroContrato }}</p>
-                <p class="bold">{{ documento.numeroRegistroGarantia }}</p>
-                <p class="bold">{{ documento.numeroInstituicaoFinanceira }}</p>
+                <p class="bold">{{ documento.palavraChave }}</p>
                 <p class="bold highlight">{{ documento.total }}</p>
             </div>
         </section>
