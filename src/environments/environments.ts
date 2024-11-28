@@ -13,7 +13,9 @@ export const environment = {
 
     urlObterListaDocumentos: `${dashboard}/documentos`,
     urlObterDadosUltimos30DiasGraficoBarra: `${dashboard}/dashboard/ultimos-30-dias`,
-    urlObterDadosPublicacoesUltimoMes: `${dashboard}/dashboard/publicacoes-ultimo-mes`
+    urlObterDadosPublicacoesUltimoMes: `${dashboard}/dashboard/publicacoes-ultimo-mes`,
+    urlObterDadosDocumentosRecuperados: `${dashboard}/dashboard/documentos-recuperados`,
+    urlObterArquivos: `${dashboard}/dashboard/arquivos`
 
     //#endregion
 }
