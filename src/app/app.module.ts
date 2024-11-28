@@ -3,6 +3,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { PalavraChaveService } from './services/palavra-chave.service';
 
 
 
@@ -15,7 +16,8 @@ import { MatTableModule } from '@angular/material/table';
     MatTableModule
   ],
   providers: [
-    DatePipe
+    DatePipe,
+    PalavraChaveService
   ]
 })
 export class AppModule { }

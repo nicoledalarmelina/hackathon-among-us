@@ -4,8 +4,7 @@ const dashboard = "https://dashboard/api"; //TODO
 export const environment = {
     //#region PALAVRA-CHAVE
 
-    urlObterPalavraChave: `${regulatorio}`,
-
+    urlPalavraChave: `${regulatorio}`,
 
     //#endregion
 
