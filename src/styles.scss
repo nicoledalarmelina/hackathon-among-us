@@ -73,11 +73,15 @@ p {
   color: mat.get-theme-color(m3-theme.$light-theme, primary, 100) !important;
 }
 
-.mat-mdc-table, .mat-mdc-paginator {
+.mat-mdc-table, .mat-mdc-paginator, .mat-mdc-menu-panel {
   background-color: mat.get-theme-color(m3-theme.$light-theme, primary, 100) !important;
 }
 
 table .mat-mdc-button:hover {
   --mat-text-button-hover-state-layer-opacity: 0;
   --mat-text-button-pressed-state-layer-opacity: 0;
+}
+
+.mat-mdc-menu-content {
+  padding: 0px !important;
 }
