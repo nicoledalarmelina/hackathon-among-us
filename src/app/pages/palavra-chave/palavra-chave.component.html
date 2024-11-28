@@ -6,29 +6,27 @@
     <button mat-raised-button (click)="openDialog()">Incluir palavra chave</button>
   </div>
 
-
-
-  <div class="card">
+  <div class="card px-0 py-2">
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="palavra">
-        <th mat-header-cell *matHeaderCellDef> Palavra </th>
+        <th mat-header-cell *matHeaderCellDef> Palavra-chave </th>
         <td mat-cell *matCellDef="let element"> {{element.palavra}} </td>
       </ng-container>
 
       <ng-container matColumnDef="criadaPor">
-        <th mat-header-cell *matHeaderCellDef> Criada por </th>
+        <th mat-header-cell *matHeaderCellDef> Cadastrada por </th>
         <td mat-cell *matCellDef="let element"> {{element.criadaPor}} </td>
       </ng-container>
 
       <ng-container matColumnDef="criadaEm">
-        <th mat-header-cell *matHeaderCellDef> Criada em </th>
+        <th mat-header-cell *matHeaderCellDef> Cadastrada em </th>
         <td mat-cell *matCellDef="let element"> {{ element.criadaEm | date: 'dd/MM/yyyy' }} </td>
       </ng-container>
 
       <ng-container matColumnDef="acao">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button [matMenuTriggerFor]="menu" class="tabela-acao" disableRipple="true"><i
+          <button  [matMenuTriggerFor]="menu" class="tabela-acao" disableRipple="true"><i
               class="fa-solid fa-ellipsis-vertical"></i></button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="deleteKeyword(element.id)">Excluir</button>

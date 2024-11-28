@@ -29,23 +29,11 @@ p {
 
 .card {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  border-radius: 20px;
   padding: 10px 15px;
   display: flex;
   flex-direction: column;
   background-color: #FFF;
-}
-
-.mr-1 {
-  margin-right: 1rem;
-}
-
-.mb-1 {
-  margin-bottom: 1rem;
-}
-
-.mt-1 {
-  margin-top: 1rem;
 }
 
 .header-page {
@@ -73,7 +61,9 @@ p {
   color: mat.get-theme-color(m3-theme.$light-theme, primary, 100) !important;
 }
 
-.mat-mdc-table, .mat-mdc-paginator, .mat-mdc-menu-panel {
+.mat-mdc-table,
+.mat-mdc-paginator,
+.mat-mdc-menu-panel {
   background-color: mat.get-theme-color(m3-theme.$light-theme, primary, 100) !important;
 }
 
@@ -84,4 +74,45 @@ table .mat-mdc-button:hover {
 
 .mat-mdc-menu-content {
   padding: 0px !important;
+}
+
+.mat-mdc-menu-content, .mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text {
+  font-family: "Montserrat" !important;
+}
+
+/*TRUMPS*/
+
+.mr-1 {
+  margin-right: 1rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
+.px-0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.py-1 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-2 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }

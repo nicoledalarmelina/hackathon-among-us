@@ -11,6 +11,7 @@ import { KeywordDialogComponent } from '../../shared/components/keyword-dialog/k
 import { PalavraChaveService } from '../../services/palavra-chave.service';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { ToastService } from '../../shared/components/toast/toast.service';
+import { CriarPalavraChaveRequest } from '../../core/requests/palavra-chave/criar-palavra-chave.request';
 
 @Component({
   selector: 'app-palavra-chave',
@@ -70,16 +71,23 @@ export class PalavraChaveComponent {
       height: '244px',
       width: '666px',
     });
+
+    dialogRef.afterClosed().subscribe(keyword => {
+      if (keyword) {
+        this.addKeyword(keyword);
+      }
+    });
   }
 
   getKeyrowdsList() {
     this.palavraChaveService.obterPalavrasChave().subscribe({
       next: (response) => {
-        {
-          if (response.listaPalavras) {
-            this.listaPalavras = response.listaPalavras;
-          }
+        if (response.listaPalavras) {
+          this.listaPalavras = response.listaPalavras;
         }
+      },
+      error: (error) => {
+        this.toastService.showToast('error', error.message);
       }
     })
   }
@@ -92,12 +100,27 @@ export class PalavraChaveComponent {
         }
       },
       error: (error) => {
-        console.log(error)
-        console.log(error.message)
         this.toastService.showToast('error', error.message);
       }
     })
   }
 
+  addKeyword(keyword: string) {
+    let request = <CriarPalavraChaveRequest>{
+      palavra: keyword,
+      criadoPor: 'Usuário Among us'
+    };
+
+    this.palavraChaveService.criarPalavraChave(request).subscribe({
+      next: (response) => {
+        if (response.id) {
+          this.toastService.showToast('success', 'Palavra-chave incluída com sucesso!');
+        }
+      },
+      error: (error) => {
+        this.toastService.showToast('error', error.message);
+      }
+    })
+  }
 
 }

@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent {
 
-  constructor(private router: Router) {}
-
+  constructor(private router: Router) {
+  }
+  
   selecionado: string = "regulatorio";
-
+  
   goTo(link: string) {
     this.router.navigate([link]);
   }

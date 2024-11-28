@@ -6,4 +6,21 @@
   border: none;
   background: none;
   cursor: pointer;
+  color: #AAA;
+  font-size: 15px;
+}
+
+table {
+  border-radius: 10px;
+
+  th {
+    background-color: #E5F0FA !important;
+    color: #384047;
+    font-weight: 700;
+    border: none;
+  }
+
+  td {
+    border-color: #D0D3D6;
+  }
 }

@@ -6,8 +6,9 @@
       <input matInput placeholder="Digite a palavra-chave" formControlName="keyword">
     </mat-form-field>
     <div>
-      <button mat-stroked-button [mat-dialog-close]="true">Cancelar</button>
-      <button mat-flat-button [disabled]="formKeyword.invalid">Adicionar</button>
+      <button mat-stroked-button [mat-dialog-close]="null">Cancelar</button>
+      <button mat-flat-button [disabled]="formKeyword.invalid"
+        [mat-dialog-close]="formKeyword.value.keyword">Adicionar</button>
     </div>
   </form>
 </div>
