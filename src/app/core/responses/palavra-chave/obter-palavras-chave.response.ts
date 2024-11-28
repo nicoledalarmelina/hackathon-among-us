@@ -1,7 +1,5 @@
+import { PalavraChave } from "../../models/palavra-chave.model";
+
 export class ObterPalavrasChaveResponse {
-    id: number;
-    palavra: string;
-    criadaPor: string;
-    criadaEm: Date;
-    ativa: number;
+    listaPalavras: PalavraChave[];
 }
