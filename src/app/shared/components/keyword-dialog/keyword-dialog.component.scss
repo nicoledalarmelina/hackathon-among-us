@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+@use '../../../assets/styles/m3-theme.scss';
+
+.keyword-dialog {
+  height: 100%;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  p {
+    font-size: 14px;
+    font-weight: 700;
+    color: mat.get-theme-color(m3-theme.$light-theme, neutral, 40);
+  }
+
+  div {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+}

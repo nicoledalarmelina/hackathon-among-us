@@ -6,6 +6,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { PalavraChave } from '../../core/models/palavra-chave.model';
 import { DatePipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialog } from '@angular/material/dialog';
+import { KeywordDialogComponent } from '../../shared/components/keyword-dialog/keyword-dialog.component';
 
 export interface PeriodicElement {
   name: string;
@@ -30,12 +32,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-palavra-chave',
   standalone: true,
-  imports: [BreadcrumbComponent, MatTableModule, MatPaginatorModule, DatePipe, MatMenuModule],
+  imports: [BreadcrumbComponent, MatTableModule, MatPaginatorModule, DatePipe, MatMenuModule, MatButtonModule],
   templateUrl: './palavra-chave.component.html',
   styleUrl: './palavra-chave.component.scss'
 })
 
 export class PalavraChaveComponent {
+
+  constructor(private dialog: MatDialog) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -65,6 +69,13 @@ export class PalavraChaveComponent {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(KeywordDialogComponent, {
+      height: '244px',
+      width: '666px',
+    });
   }
 
 }
