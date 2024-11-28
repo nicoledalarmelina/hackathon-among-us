@@ -1,4 +1,3 @@
-
 @use '@angular/material' as mat;
 @use './app/assets/styles/m3-theme.scss';
 
@@ -8,8 +7,15 @@ html {
   @include mat.all-component-themes(m3-theme.$light-theme);
 }
 
-html, body { height: 100%; }
-body { margin: 0; background-color: #ECEEEF; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #ECEEEF;
+}
 
 * {
   font-family: 'Montserrat';
@@ -52,15 +58,26 @@ p {
   font-weight: 700;
 }
 
-.mat-mdc-raised-button, .mat-mdc-outlined-button, .mat-mdc-unelevated-button  {
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button {
   border-radius: 5px !important;
 }
 
 .mat-mdc-outlined-button {
-  border: 2px solid mat.get-theme-color(m3-theme.$light-theme, primary, 50) !important; 
+  border: 2px solid mat.get-theme-color(m3-theme.$light-theme, primary, 50) !important;
 }
 
 .mat-mdc-raised-button:not(:disabled) {
   background-color: mat.get-theme-color(m3-theme.$light-theme, primary, 30) !important;
   color: mat.get-theme-color(m3-theme.$light-theme, primary, 100) !important;
+}
+
+.mat-mdc-table, .mat-mdc-paginator {
+  background-color: mat.get-theme-color(m3-theme.$light-theme, primary, 100) !important;
+}
+
+table .mat-mdc-button:hover {
+  --mat-text-button-hover-state-layer-opacity: 0;
+  --mat-text-button-pressed-state-layer-opacity: 0;
 }

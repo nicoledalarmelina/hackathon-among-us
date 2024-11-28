@@ -1,11 +1,13 @@
 <div class="keyword-dialog">
-  <p>Nova palavra-chave</p>
-  <mat-form-field>
-    <mat-label>Palavra-chave</mat-label>
-    <input matInput placeholder="Digite a palavra-chave">
-  </mat-form-field>
-  <div>
-    <button mat-stroked-button>Cancelar</button>
-    <button mat-flat-button>Adicionar</button>
-  </div>
+  <form [formGroup]="formKeyword">
+    <p>Nova palavra-chave</p>
+    <mat-form-field>
+      <mat-label>Palavra-chave</mat-label>
+      <input matInput placeholder="Digite a palavra-chave" formControlName="keyword">
+    </mat-form-field>
+    <div>
+      <button mat-stroked-button [mat-dialog-close]="true">Cancelar</button>
+      <button mat-flat-button [disabled]="formKeyword.invalid">Adicionar</button>
+    </div>
+  </form>
 </div>
