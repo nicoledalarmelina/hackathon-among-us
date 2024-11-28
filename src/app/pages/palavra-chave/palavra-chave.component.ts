@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -9,46 +9,39 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { KeywordDialogComponent } from '../../shared/components/keyword-dialog/keyword-dialog.component';
 import { PalavraChaveService } from '../../services/palavra-chave.service';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+import { ToastComponent } from '../../shared/components/toast/toast.component';
+import { ToastService } from '../../shared/components/toast/toast.service';
 
 @Component({
   selector: 'app-palavra-chave',
   standalone: true,
-  imports: [BreadcrumbComponent, MatTableModule, MatPaginatorModule, DatePipe, MatMenuModule, MatButtonModule],
+  imports: [
+    MatTableModule,
+    MatPaginatorModule,
+    DatePipe,
+    MatMenuModule,
+    MatButtonModule,
+    BreadcrumbComponent,
+    ToastComponent
+  ],
   templateUrl: './palavra-chave.component.html',
   styleUrl: './palavra-chave.component.scss'
 })
 
 export class PalavraChaveComponent {
 
-  constructor(private dialog: MatDialog, private palavraChaveService: PalavraChaveService) { }
+  constructor(private dialog: MatDialog) { }
+
+  private toastService = inject(ToastService);
+  private palavraChaveService = inject(PalavraChaveService);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   listaPalavras: PalavraChave[] = [
-    <PalavraChave>{ palavra: 'Detran', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'departamento estadual de trânsito', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'Unidade Fiscal de Referência', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'UFR', criadaPor: 'Among us', criadaEm: new Date },
+    <PalavraChave>{ id: 1, palavra: 'Detran', criadaPor: 'Among us', criadaEm: new Date },
+    <PalavraChave>{ id: 2, palavra: 'departamento estadual de trânsito', criadaPor: 'Among us', criadaEm: new Date },
+    <PalavraChave>{ id: 3, palavra: 'Unidade Fiscal de Referência', criadaPor: 'Among us', criadaEm: new Date },
+    <PalavraChave>{ id: 4, palavra: 'UFR', criadaPor: 'Among us', criadaEm: new Date },
     <PalavraChave>{ palavra: 'Unidade Padrão Fiscal', criadaPor: 'Among us', criadaEm: new Date },
     <PalavraChave>{ palavra: 'UPF', criadaPor: 'Among us', criadaEm: new Date },
     <PalavraChave>{ palavra: 'Diretoria', criadaPor: 'Among us', criadaEm: new Date },
@@ -95,9 +88,16 @@ export class PalavraChaveComponent {
     this.palavraChaveService.excluirPalavraChave(id).subscribe({
       next: (response) => {
         if (response.id) {
-          //SUCESSO
+          this.toastService.showToast('success', 'Palavra - chave excluída com sucesso!');
         }
+      },
+      error: (error) => {
+        console.log(error)
+        console.log(error.message)
+        this.toastService.showToast('error', error.message);
       }
     })
   }
+
+
 }

@@ -4,6 +4,7 @@ import { SharedModule } from './shared/shared.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { PalavraChaveService } from './services/palavra-chave.service';
+import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 
 
@@ -13,11 +14,13 @@ import { PalavraChaveService } from './services/palavra-chave.service';
     CommonModule,
     SharedModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    HttpClient
   ],
   providers: [
     DatePipe,
-    PalavraChaveService
+    PalavraChaveService,
+    provideHttpClient()
   ]
 })
 export class AppModule { }

@@ -1,0 +1,14 @@
+<div class="toast-container">
+    @for(toast of toasts; track toast){
+    <div class="toast" [ngClass]="toast.type" [@toastAnimation]>
+        <div class="toast-content">
+            <div class="toast-title">
+                {{toast.title}}
+            </div>
+            <div class="toast-message">
+                {{toast.message}}
+            </div>
+        </div>
+    </div>
+    }
+</div>

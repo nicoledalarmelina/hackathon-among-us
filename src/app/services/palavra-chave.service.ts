@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { ObterPalavrasChaveResponse } from '../core/responses/palavra-chave/obter-palavras-chave.response';
 import { map, Observable } from 'rxjs';
