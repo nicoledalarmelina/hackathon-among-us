@@ -10,7 +10,9 @@ export const environment = {
 
     //#region DASHBOARD
 
-    urlObterListaDocumentos: `${dashboard}/documentos`
+    urlObterListaDocumentos: `${dashboard}/documentos`,
+    urlObterDadosUltimos30DiasGraficoBarra: `${dashboard}/dashboard/ultimos-30-dias`,
+    urlObterDadosPublicacoesUltimoMes: `${dashboard}/dashboard/publicacoes-ultimo-mes`
 
     //#endregion
 }
