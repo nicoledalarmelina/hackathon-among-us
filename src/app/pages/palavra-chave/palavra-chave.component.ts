@@ -3,7 +3,7 @@ import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcru
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { PalavraChave } from '../../core/models/palavra-chave.model';
+import { PalavraChave } from '../../core/models/palavra-chave/palavra-chave.model';
 import { DatePipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';

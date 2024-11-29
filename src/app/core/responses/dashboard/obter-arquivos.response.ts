@@ -1,4 +1,4 @@
-import { ArquivoRecuperado } from "../../models/arquivo-recuperado.model";
+import { ArquivoRecuperado } from "../../models/dashboard/arquivo-recuperado.model";
 
 export class ObterArquivosResponse {
   lista: ArquivoRecuperado[];

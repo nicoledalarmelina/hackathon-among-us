@@ -1,0 +1,51 @@
+.total {
+    width: 30%;
+    padding: .5rem;
+    margin-top: 1rem;
+    background: #FFC779;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .number {
+        font-size: 18px;
+    }
+}
+
+p {
+    font-size: 12px;
+    color: #384047;
+
+    &.bold {
+        font-weight: 700;
+    }
+}
+
+.text {
+    width: 20%;
+}
+
+.values {
+    margin-top: 1rem;
+
+    p {
+        color: #626E78;
+        text-align: left;
+        width: 11rem;
+
+        &.highlight {
+            color: #EA941D;
+        }
+
+        &:last-child {
+            text-align: right;
+            width: 7rem;
+        }
+
+        &:first-child {
+            width: 2rem;
+        }
+    }
+}

@@ -76,11 +76,25 @@ table .mat-mdc-button:hover {
   padding: 0px !important;
 }
 
-.mat-mdc-menu-content, .mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text {
+.mat-mdc-menu-content,
+.mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text {
   font-family: "Montserrat" !important;
 }
 
 /*TRUMPS*/
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 .mr-1 {
   margin-right: 1rem;

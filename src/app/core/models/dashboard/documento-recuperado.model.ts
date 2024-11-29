@@ -1,4 +1,4 @@
-import { TipoDocumento } from "../enums/tipoDocumento.enum";
+import { TipoDocumento } from "../../enums/tipoDocumento.enum";
 
 export class DocumentoRecuperado {
     tipoDocumento: TipoDocumento;

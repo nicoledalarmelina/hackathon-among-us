@@ -1,83 +1,18 @@
-p {
-    font-size: 12px;
-    color: #384047;
-
-    &.bold {
-        font-weight: 700;
-    }
-}
-
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 15px;
-}
-
 .chart {
     padding: 1rem;
     width: 60%;
 }
 
-.text {
-    width: 20%;
-}
-
 .docs {
     padding: 1rem;
     width: 25%;
-
-    .total {
-        width: 30%;
-        padding: .5rem;
-        margin-top: 1rem;
-        background: #FFC779;
-        border-radius: 8px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-
-        .number {
-            font-size: 18px;
-        }
-    }
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.values {
-    margin-top: 1rem;
-
-    p {
-        color: #626E78;
-        text-align: left;
-        width: 11rem;
-
-        &.highlight {
-            color: #EA941D;
-        }
-
-        &:last-child {
-            text-align: right;
-            width: 7rem;
-        }
-
-        &:first-child {
-            width: 2rem;
-        }
-    }
 }
 
 .docs-carousel {
     padding: 2px;
     margin-right: 1rem;
     overflow: hidden;
-    
+
     .row {
         transition: all 0.8s ease-in-out;
         // transform: translateX(-100%);

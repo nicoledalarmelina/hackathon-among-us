@@ -6,25 +6,7 @@
     </div>
 
     <div class="card docs">
-        <p class="bold"> Documentos recuperados </p>
-        <section class="total">
-            <p class="bold">Total</p>
-            <p class="number bold">6.110</p>
-        </section>
-
-        <section class="values column">
-            <div class="row">
-                <p>UF</p>
-                <p>Palavra-chave mais relevante</p>
-                <p>Total de docs recuperados</p>
-            </div>
-
-            <div class="row" *ngFor="let documento of listaDocumentosRecuperados">
-                <p class="bold">{{ documento.uf }}</p>
-                <p class="bold">{{ documento.palavraChave }}</p>
-                <p class="bold highlight">{{ documento.total }}</p>
-            </div>
-        </section>
+        <app-listagem-docs-uf></app-listagem-docs-uf>
     </div>
 </div>
 

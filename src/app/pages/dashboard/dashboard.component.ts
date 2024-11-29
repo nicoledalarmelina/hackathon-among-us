@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
-import { ListaDocumentosRecuperados } from '../../core/models/lista-documentos-recuperados.model';
+import { ListaDocumentosRecuperados } from '../../core/models/dashboard/lista-documentos-recuperados.model';
 import { CommonModule } from '@angular/common';
-import { DocumentoRecuperado } from '../../core/models/documento-recuperado.model';
+import { DocumentoRecuperado } from '../../core/models/dashboard/documento-recuperado.model';
 import { TipoDocumento } from '../../core/enums/tipoDocumento.enum';
 import { FileCardComponent } from '../../shared/components/file-card/file-card.component';
+import { ListagemDocsUfComponent } from './components/listagem-docs-uf/listagem-docs-uf.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,28 +13,13 @@ import { FileCardComponent } from '../../shared/components/file-card/file-card.c
   imports: [
     CommonModule,
     BreadcrumbComponent,
-    FileCardComponent
+    FileCardComponent,
+    ListagemDocsUfComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-
-  listaDocumentosRecuperados: ListaDocumentosRecuperados[] = [
-    // <ListaDocumentosRecuperados>{ uf: 'AC', numeroRegistroContrato: 1, total: 6 },
-    // <ListaDocumentosRecuperados>{ uf: 'AP', numeroRegistroContrato: 1, total: 6 },
-    // <ListaDocumentosRecuperados>{ uf: 'BA', numeroRegistroContrato: 1, total: 6 },
-    // <ListaDocumentosRecuperados>{ uf: 'MA', numeroRegistroContrato: 1, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'MG', palavraChave: 'Detran', total: 6 },
-    // <ListaDocumentosRecuperados>{ uf: 'PB', numeroRegistroContrato: 1, total: 6 },
-    // <ListaDocumentosRecuperados>{ uf: 'PE', numeroRegistroContrato: 1, total: 6 },
-    // <ListaDocumentosRecuperados>{ uf: 'PI', numeroRegistroContrato: 1, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'PR', palavraChave: 'financiamento', total: 6 },
-    // <ListaDocumentosRecuperados>{ uf: 'RJ', numeroRegistroContrato: 1, total: 6 },
-    // <ListaDocumentosRecuperados>{ uf: 'RR', numeroRegistroContrato: 1, total: 6 },
-    // <ListaDocumentosRecuperados>{ uf: 'SC', numeroRegistroContrato: 1, total: 6 },
-    <ListaDocumentosRecuperados>{ uf: 'SP', palavraChave: 'veículo', total: 6 },
-  ];
 
   listaDocumentos: DocumentoRecuperado[] = [
     <DocumentoRecuperado>{

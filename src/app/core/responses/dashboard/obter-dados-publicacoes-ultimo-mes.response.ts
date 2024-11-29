@@ -1,4 +1,4 @@
-import { EstadosGrafico } from "../../models/estados-grafico.model";
+import { EstadosGrafico } from "../../models/dashboard/estados-grafico.model";
 
 export class ObterDadosPublicacoesUltimoMesResponse {
   id: number;

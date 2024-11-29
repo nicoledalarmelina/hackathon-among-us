@@ -1,5 +1,5 @@
 import { Component, Input, LOCALE_ID } from '@angular/core';
-import { DocumentoRecuperado } from '../../../core/models/documento-recuperado.model';
+import { DocumentoRecuperado } from '../../../core/models/dashboard/documento-recuperado.model';
 import { TipoDocumento } from '../../../core/enums/tipoDocumento.enum';
 import { CommonModule } from '@angular/common';
 
