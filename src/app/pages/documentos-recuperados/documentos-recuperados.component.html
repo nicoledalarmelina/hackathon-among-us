@@ -1,0 +1,13 @@
+<div class="documentos-recuperados-page">
+    <app-breadcrumb [page]="'Documentos recuperados'"></app-breadcrumb>
+
+    <div class="row mr-1 mb-1">
+        <section class="docs-carousel">
+            @for(documento of listaDocumentos; track documento) {
+            <div class="document">
+                <app-file-card [documento]="documento"></app-file-card>
+            </div>
+            }
+        </section>
+    </div>
+</div>

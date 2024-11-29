@@ -1,0 +1,19 @@
+.row {
+    width: 99%
+}
+
+.carousel {
+    flex-wrap: wrap;
+}
+
+.docs-carousel {
+    padding: 2px;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+
+    .document {
+        width: 18%;
+    }
+}

@@ -8,6 +8,7 @@ import { FileCardComponent } from '../../shared/components/file-card/file-card.c
 import { ListagemDocsUfComponent } from './components/listagem-docs-uf/listagem-docs-uf.component';
 import { GraficoPalavrasChaveComponent } from './components/grafico-palavras-chave/grafico-palavras-chave.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -54,23 +55,14 @@ export class DashboardComponent {
   index: number = 0;
   totalIndexes: number = 0;
 
+  constructor(private router: Router) { }
+
   ngOnInit() {
     this.countDocs();
   }
 
   clickRightArrow() {
-    if (this.totalIndexes > this.index + 1) {
-      this.slidePositon -= 91.5;
-      this.index++;
-    }
-
-  }
-
-  clickLeftArrow() {
-    if (this.index > 0) {
-      this.slidePositon += 91.5;
-      this.index--;
-    }
+    this.router.navigate(['documentos-recuperados']);
   }
 
   countDocs() {
