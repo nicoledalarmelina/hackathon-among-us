@@ -1,0 +1,21 @@
+<p class="bold titulos mb-1"> Palavras-chave mais relevantes na recuperação de documentos </p>
+
+<div class="row">
+    <div class="column-total">
+        @for(palavra of listaPalavras; track palavra) {
+        <p>{{ palavra.total }}</p>
+        }
+    </div>
+
+    <div class="column-content">
+        @for(palavra of listaPalavras; track palavra; let idx = $index) {
+        <div class="column gap-0">
+            <p class="titulos bold">{{ palavra.palavra }}</p>
+            <div class="row">
+                <div class="bar" [ngClass]="'palavra-' + idx" [matTooltip]="palavra.total + ' documentos'"
+                    [ngStyle]="{ 'width': calcWidth(palavra.total) + '%' }"></div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

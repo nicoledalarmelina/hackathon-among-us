@@ -6,6 +6,7 @@ import { DocumentoRecuperado } from '../../core/models/dashboard/documento-recup
 import { TipoDocumento } from '../../core/enums/tipoDocumento.enum';
 import { FileCardComponent } from '../../shared/components/file-card/file-card.component';
 import { ListagemDocsUfComponent } from './components/listagem-docs-uf/listagem-docs-uf.component';
+import { GraficoPalavrasChaveComponent } from './components/grafico-palavras-chave/grafico-palavras-chave.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,8 @@ import { ListagemDocsUfComponent } from './components/listagem-docs-uf/listagem-
     CommonModule,
     BreadcrumbComponent,
     FileCardComponent,
-    ListagemDocsUfComponent
+    ListagemDocsUfComponent,
+    GraficoPalavrasChaveComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'

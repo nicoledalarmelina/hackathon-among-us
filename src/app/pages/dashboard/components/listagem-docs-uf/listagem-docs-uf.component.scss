@@ -14,15 +14,6 @@
     }
 }
 
-p {
-    font-size: 12px;
-    color: #384047;
-
-    &.bold {
-        font-weight: 700;
-    }
-}
-
 .text {
     width: 20%;
 }
@@ -34,6 +25,7 @@ p {
         color: #626E78;
         text-align: left;
         width: 11rem;
+        font-size: 12px;
 
         &.highlight {
             color: #EA941D;

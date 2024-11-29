@@ -81,6 +81,12 @@ table .mat-mdc-button:hover {
   font-family: "Montserrat" !important;
 }
 
+
+.titulos {
+  font-size: 12px;
+  color: #384047;
+}
+
 /*TRUMPS*/
 
 .row {
@@ -129,4 +135,8 @@ table .mat-mdc-button:hover {
 .py-2 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.bold {
+  font-weight: 700;
 }

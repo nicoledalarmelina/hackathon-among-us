@@ -1,0 +1,71 @@
+.bar {
+    width: 100%;
+    height: 10px;
+    border-radius: 0 7px 7px 0;
+    opacity: .65;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.gap-0 {
+    gap: 0;
+}
+
+.palavra {
+    &-0 {
+        background-color: #1666AE;
+    }
+
+    &-1 {
+        background-color: #97CEFF;
+    }
+
+    &-2 {
+        background-color: #9EF19C;
+    }
+
+    &-3 {
+        background-color: #FFC779;
+    }
+
+    &-4 {
+        background-color: #FEA481;
+    }
+}
+
+.row {
+    justify-content: left;
+    gap: 5px;
+}
+
+.column {
+    &-total {
+        min-width: 2%;
+        flex-direction: column;
+        display: flex;
+        gap: 13px;
+
+        p {
+            height: 23px;
+            display: flex;
+            align-items: end;
+            font-size: 10px;
+            color: #384047;
+        }
+    }
+
+    &-content {
+        width: 100%;
+        flex-direction: column;
+        display: flex;
+        gap: 13px;
+
+        p {
+            color: #384047;
+            font-size: 10px;
+        }
+    }
+}
