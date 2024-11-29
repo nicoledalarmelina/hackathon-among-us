@@ -2,11 +2,12 @@ import { Component, Input, LOCALE_ID } from '@angular/core';
 import { DocumentoRecuperado } from '../../../core/models/dashboard/documento-recuperado.model';
 import { TipoDocumento } from '../../../core/enums/tipoDocumento.enum';
 import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-file-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatTooltipModule],
   templateUrl: './file-card.component.html',
   styleUrl: './file-card.component.scss'
 })
@@ -34,11 +35,13 @@ export class FileCardComponent {
     return `${vigencia.getDate()} de ${this.meses[mes]} de ${vigencia.getFullYear()}`;
   }
 
-  retornarClasseTipo(tipoDocumento: TipoDocumento) {
-    switch (tipoDocumento) {
-      case TipoDocumento.instituicaoFinanceira: return 'instituicao-financeira';
-      case TipoDocumento.registroContrato: return 'registro-contrato';
-      case TipoDocumento.registroGarantia: return 'registro-garantia';
+  getName(uf: string) {
+    switch (uf) {
+      case 'MG': return 'Minas Gerais';
+      case 'PR': return 'Paraná';
+      case 'SP': return 'São Paulo';
+
+      default: return '';
     }
   }
 }

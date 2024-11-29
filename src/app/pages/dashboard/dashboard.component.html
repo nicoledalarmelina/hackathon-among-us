@@ -9,20 +9,25 @@
         <app-listagem-docs-uf></app-listagem-docs-uf>
     </div>
 
-    <div class="card teste">
+    <div class="card calendar">
         calendário
     </div>
 </div>
 
-<div class="arrow left" (click)="clickLeftArrow()" *ngIf="index > 0"><i class="fa-solid fa-angle-left"></i></div>
-<div class="arrow right" (click)="clickRightArrow()" *ngIf="totalIndexes > index + 1"><i
-        class="fa-solid fa-angle-right"></i></div>
+<div class="arrow right" (click)="clickRightArrow()" matTooltip="Ver todos os documentos recuperados">
+    <i class="fa-solid fa-angle-right"></i>
+</div>
 
-<section class="docs-carousel">
-    <!-- <div class="row" [ngStyle]="{ 'transform': 'translateX(-' + slidePositon + '%)' }"> -->
-    <div class="row carousel" [ngStyle]="{'transform': 'translate(' + slidePositon + 'vw)'}">
-        <div *ngFor="let documento of listaDocumentos" class="teste">
+<div class="row mr-1 mb-1">
+    <section class="docs-carousel">
+        @for(documento of listaDocumentos; track documento) {
+        <div class="document">
             <app-file-card [documento]="documento"></app-file-card>
         </div>
-    </div>
-</section>
+        }
+    </section>
+
+    <section class="card timeline">
+        linha do tempo
+    </section>
+</div>

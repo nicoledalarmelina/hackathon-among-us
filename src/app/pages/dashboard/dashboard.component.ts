@@ -7,12 +7,14 @@ import { TipoDocumento } from '../../core/enums/tipoDocumento.enum';
 import { FileCardComponent } from '../../shared/components/file-card/file-card.component';
 import { ListagemDocsUfComponent } from './components/listagem-docs-uf/listagem-docs-uf.component';
 import { GraficoPalavrasChaveComponent } from './components/grafico-palavras-chave/grafico-palavras-chave.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
     CommonModule,
+    MatTooltipModule,
     BreadcrumbComponent,
     FileCardComponent,
     ListagemDocsUfComponent,
@@ -26,98 +28,21 @@ export class DashboardComponent {
   listaDocumentos: DocumentoRecuperado[] = [
     <DocumentoRecuperado>{
       titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.instituicaoFinanceira,
+      uf: 'SP',
       resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
       vigencia: new Date(),
       base64: ""
     },
     <DocumentoRecuperado>{
       titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.registroContrato,
+      uf: 'PR',
       resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
       vigencia: new Date(),
       base64: ""
     },
     <DocumentoRecuperado>{
       titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.registroGarantia,
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.instituicaoFinanceira,
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.registroContrato,
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.registroGarantia,
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.registroContrato,
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.instituicaoFinanceira,
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.registroGarantia,
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.registroContrato,
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.instituicaoFinanceira,
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.registroGarantia,
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.registroContrato,
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      tipoDocumento: TipoDocumento.instituicaoFinanceira,
+      uf: 'MG',
       resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
       vigencia: new Date(),
       base64: ""

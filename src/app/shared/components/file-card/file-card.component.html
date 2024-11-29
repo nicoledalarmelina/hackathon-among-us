@@ -1,12 +1,12 @@
 <div class="card documento-recuperado">
     <section>
-        <p [ngClass]="retornarClasseTipo(documento.tipoDocumento)">{{ documento.tipoDocumento }}</p>
-        <img src="./assets/images/download-icon.svg">
+        <p [ngClass]="documento.uf">{{ getName(documento.uf) }}</p>
+        <i class="fa-solid fa-arrow-up-right-from-square" matTooltip="Ir para diário oficial"></i>
     </section>
     <p class="mt-1">{{ documento.titulo }}</p>
     <span>{{ documento.resumo }}</span>
     <span class="data">
         Vigente desde: {{ formatarData(documento.vigencia) }}
     </span>
-    <button mat-stroked-button>Visualizar</button>
+    <button mat-stroked-button>Baixar documento</button>
 </div>

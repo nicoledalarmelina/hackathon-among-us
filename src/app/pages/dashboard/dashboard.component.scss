@@ -1,6 +1,6 @@
 .chart {
     padding: 1rem;
-    width: 45%;
+    width: 41%;
 }
 
 .docs {
@@ -8,19 +8,29 @@
     width: 30%;
 }
 
-.teste {
+.calendar {
     width: 20%;
+}
+
+.carousel {
+    flex-wrap: wrap;
 }
 
 .docs-carousel {
     padding: 2px;
-    margin-right: 1rem;
-    overflow: hidden;
+    width: 77%;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    gap: 23px;
 
-    .row {
-        transition: all 0.8s ease-in-out;
-        // transform: translateX(-100%);
+    .document {
+        width: 27%;
     }
+}
+
+.timeline {
+    width: 20%
 }
 
 .arrow {
@@ -39,6 +49,6 @@
     cursor: pointer;
 
     &.right {
-        right: 12px;
+        right: 25.5%;
     }
 }

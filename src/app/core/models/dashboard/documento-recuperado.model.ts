@@ -1,7 +1,7 @@
 import { TipoDocumento } from "../../enums/tipoDocumento.enum";
 
 export class DocumentoRecuperado {
-    tipoDocumento: TipoDocumento;
+    uf: string;
     titulo: string;
     resumo: string;
     vigencia: Date;
