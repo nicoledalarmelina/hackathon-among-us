@@ -9,6 +9,7 @@ import { ListagemDocsUfComponent } from './components/listagem-docs-uf/listagem-
 import { GraficoPalavrasChaveComponent } from './components/grafico-palavras-chave/grafico-palavras-chave.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
+import { EstadosGrafico } from '../../core/models/dashboard/estados-grafico.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -50,15 +51,24 @@ export class DashboardComponent {
     },
   ];
 
+  listaAtualizacao: EstadosGrafico[] = [
+    <EstadosGrafico>{ data: '29/11/2024', estado: 'MG' },
+    <EstadosGrafico>{ data: '29/11/2024', estado: 'SP' },
+    <EstadosGrafico>{ data: '15/11/2024', estado: 'PR' }
+  ]
+
   slidePositon: number = 0;
   widthDoc: number = 18;
   index: number = 0;
   totalIndexes: number = 0;
 
+  groupedUpdates: any;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
     this.countDocs();
+    this.groupUpdates();
   }
 
   clickRightArrow() {
@@ -68,5 +78,18 @@ export class DashboardComponent {
   countDocs() {
     let count = this.listaDocumentos.length;
     this.totalIndexes = Math.ceil(count / 5);
+  }
+
+  groupUpdates() {
+    this.groupedUpdates = Object.keys(this.listaAtualizacao.reduce((acc, update) => {
+      (acc[update.data] = acc[update.data] || []).push(update);
+      return acc;
+    }, {} as { [key: string]: EstadosGrafico[] }))
+      .map(data => ({
+        data: data,
+        ufs: this.listaAtualizacao.filter(updt => updt.data === data).map(updt => updt.estado)
+      }));
+
+      console.log(this.groupedUpdates)
   }
 }
