@@ -117,15 +117,8 @@ export class DocumentosRecuperadosComponent implements OnInit {
   }
 
   groupDocsByUF() {
-    // const grouped = this.listaDocumentos.reduce((acc, obj) => {
-    //   (acc[obj.uf] = acc[obj.uf] || []).push(obj);
-    //   return acc;
-    // }, {} as { [key: string]: DocumentoRecuperado[] });
-
-    // console.log(grouped)
-
-    this.groupedDocs = Object.keys(this.listaDocumentos.reduce((acc, product) => {
-      (acc[product.uf] = acc[product.uf] || []).push(product);
+    this.groupedDocs = Object.keys(this.listaDocumentos.reduce((acc, document) => {
+      (acc[document.uf] = acc[document.uf] || []).push(document);
       return acc;
     }, {} as { [key: string]: DocumentoRecuperado[] }))
       .map(uf => ({
@@ -134,17 +127,10 @@ export class DocumentosRecuperadosComponent implements OnInit {
       }));
 
     this.groupedDocs.sort((a, b) => {
-      if (a.uf < b.uf) {
-        return -1;
-      } else if (a.uf > b.uf) {
-        return 1;
-      } else {
-        return 0;
-      }
+      if (a.uf < b.uf) return -1;
+      else if (a.uf > b.uf) return 1;
+      else return 0;
     });
-
-    console.log(this.groupedDocs);
-
   }
 
 }

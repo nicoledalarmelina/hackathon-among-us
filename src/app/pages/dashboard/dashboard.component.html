@@ -28,6 +28,18 @@
     </section>
 
     <section class="card timeline">
-        linha do tempo
+        <p class="bold titulos mb-1"> Última edição lida </p>
+        @for(update of groupedUpdates; track update) {
+        <div class="marco"></div>
+        <div class="dot"></div>
+        <div class="update">
+            <p class="data">
+                {{ update.data }}
+            </p>
+            @for(uf of update.ufs; track uf) {
+            <span>{{ uf }}</span><br>
+            }
+        </div>
+        }
     </section>
 </div>
