@@ -3,11 +3,12 @@ import { DocumentoRecuperado } from '../../../core/models/dashboard/documento-re
 import { TipoDocumento } from '../../../core/enums/tipoDocumento.enum';
 import { CommonModule } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-file-card',
   standalone: true,
-  imports: [CommonModule, MatTooltipModule],
+  imports: [CommonModule, MatTooltipModule, MatButtonModule],
   templateUrl: './file-card.component.html',
   styleUrl: './file-card.component.scss'
 })
