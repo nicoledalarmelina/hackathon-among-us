@@ -20,12 +20,12 @@ export class PalavraChaveService {
   }
 
   criarPalavraChave(request: CriarPalavraChaveRequest): Observable<CriarPalavraChaveResponse> {
-    return this.http.post<CriarPalavraChaveResponse>(`${environment.urlPalavraChave}`, request)
+    return this.http.post<CriarPalavraChaveResponse>(`${environment.urlCriarPalavraChave}`, request )
       .pipe(map(data => this.transformToCriarPalavraChave(data)));
   }
 
   excluirPalavraChave(id: number): Observable<ExcluirPalavraChaveResponse> {
-    return this.http.delete<ExcluirPalavraChaveResponse>(`${environment.urlPalavraChave}/${id}`)
+    return this.http.delete<ExcluirPalavraChaveResponse>(`${environment.urlExcluirPalavraChave}/${id}`)
       .pipe(map(data => this.transformToExcluirPalavraChave(data)));
   }
 

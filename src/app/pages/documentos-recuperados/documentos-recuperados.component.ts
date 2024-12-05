@@ -1,10 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
-import { DocumentoRecuperado } from '../../core/models/dashboard/documento-recuperado.model';
 import { FileCardComponent } from '../../shared/components/file-card/file-card.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
-import { CommonModule, NgClass } from '@angular/common';
+import { CommonModule, DatePipe, NgClass } from '@angular/common';
 import { DocumentosAgrupados } from '../../core/models/documentos-recuperados/documentos-agrupados.model';
+import { ArquivoRecuperado } from '../../core/models/dashboard/arquivo-recuperado.model';
+import { DashboardService } from '../../services/dashboard.service';
+import { ToastService } from '../../shared/components/toast/toast.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { DocsFilterDialogComponent } from '../../shared/components/docs-filter-dialog/docs-filter-dialog.component';
+import { DocumentosRecuperadosFiltro } from '../../core/models/documentos-recuperados/documentos-recuperados-filtro.model';
 
 @Component({
   selector: 'app-documentos-recuperados',
@@ -14,123 +20,106 @@ import { DocumentosAgrupados } from '../../core/models/documentos-recuperados/do
     NgClass,
     CdkAccordionModule,
     BreadcrumbComponent,
-    FileCardComponent
+    FileCardComponent,
+    MatButtonModule
   ],
+  providers: [DatePipe],
   templateUrl: './documentos-recuperados.component.html',
   styleUrl: './documentos-recuperados.component.scss'
 })
 export class DocumentosRecuperadosComponent implements OnInit {
-  items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
-  expandedIndex = 0;
+  private dashboardService = inject(DashboardService);
+  private toastService = inject(ToastService);
+
   groupedDocs: DocumentosAgrupados[];
+  listaDocumentos: ArquivoRecuperado[] = [];
+  documentosFiltrados: ArquivoRecuperado[] = this.listaDocumentos;
+  pageIndex: number = 0;
+  pageSize: number = 10;
+  filterValue: DocumentosRecuperadosFiltro | null;
+  loading: boolean = true;
 
+  constructor(private dialog: MatDialog) { }
 
-  listaDocumentos: DocumentoRecuperado[] = [
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'SP',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'PR',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'MG',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'PR',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'MG',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'SP',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'PR',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'MG',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'MG',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'SP',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'PR',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'MG',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-  ];
+  private datePipe = inject(DatePipe);
 
   ngOnInit(): void {
-    this.groupDocsByUF()
+    this.getFilesList();
   }
 
-  groupDocsByUF() {
-    this.groupedDocs = Object.keys(this.listaDocumentos.reduce((acc, document) => {
-      (acc[document.uf] = acc[document.uf] || []).push(document);
-      return acc;
-    }, {} as { [key: string]: DocumentoRecuperado[] }))
-      .map(uf => ({
-        uf: uf,
-        listaDocumentos: this.listaDocumentos.filter(doc => doc.uf === uf)
-      }));
+  openDialog() {
+    let dialogRef = this.dialog.open(DocsFilterDialogComponent, {
+      panelClass: ['animate__animated', 'animate__slideInRight', 'docs-filter'],
+      height: '400px',
+      width: '300px',
+      position: {
+        top: '0px',
+        right: '0px'
+      },
+      data: this.filterValue
+    });
 
-    this.groupedDocs.sort((a, b) => {
-      if (a.uf < b.uf) return -1;
-      else if (a.uf > b.uf) return 1;
-      else return 0;
+    dialogRef.afterClosed().subscribe(value => {
+      if (value) {
+        this.filterValue = <DocumentosRecuperadosFiltro>{
+          estado: value.estado,
+          dataInicial: value.dataInicial,
+          dataFinal: value.dataFinal,
+          relevante: value.relevante
+        };
+      }
+
+      if (value == null) {
+        this.filterValue = null;
+      }
+
+      this.getFilesList();
     });
   }
 
+  loadMore() {
+    this.getFilesList(this.pageIndex, this.pageSize + 10);
+  }
+
+  onScroll() {
+    if (this.documentosFiltrados.length == 0) return;
+
+    const scrollPosition = window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight - 2;
+    const windowHeight = window.innerHeight;
+
+    if (scrollPosition + windowHeight >= documentHeight) {
+      this.loadMore();
+    }
+  }
+
+  getFilesList(pageIndex: number = 0, pageSize: number = 10) {
+    this.loading = true;
+    let filter: DocumentosRecuperadosFiltro | null = null;
+    this.pageIndex = pageIndex;
+    this.pageSize = pageSize;
+
+    if (this.filterValue) {
+      filter = <DocumentosRecuperadosFiltro>{
+        estado: this.filterValue.estado,
+        dataInicial: this.datePipe.transform(this.filterValue.dataInicial, 'yyyy/MM/dd'),
+        dataFinal: this.datePipe.transform(this.filterValue.dataFinal, 'yyyy/MM/dd'),
+        relevante: this.filterValue.relevante
+      };
+    }
+
+    this.dashboardService.obterArquivos(pageIndex, pageSize, filter).subscribe({
+      next: (response) => {
+        if (response.listaArquivoProcessado) {
+          this.listaDocumentos = response.listaArquivoProcessado;
+          this.documentosFiltrados = [...this.listaDocumentos];
+          this.loading = false;
+        }
+      },
+      error: (error) => {
+        this.toastService.showToast('error', error.message);
+        this.loading = false;
+      }
+    })
+  }
 }

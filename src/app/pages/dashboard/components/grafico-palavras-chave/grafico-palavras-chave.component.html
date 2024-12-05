@@ -3,7 +3,7 @@
 <div class="row">
     <div class="column-total">
         @for(palavra of listaPalavras; track palavra) {
-        <p>{{ palavra.total }}</p>
+        <p>{{ palavra.quantidade }}</p>
         }
     </div>
 
@@ -12,8 +12,8 @@
         <div class="column gap-0">
             <p class="titulos bold">{{ palavra.palavra }}</p>
             <div class="row">
-                <div class="bar" [ngClass]="'palavra-' + idx" [matTooltip]="palavra.total + ' documentos'"
-                    [ngStyle]="{ 'width': calcWidth(palavra.total) + '%' }"></div>
+                <div class="bar" [ngClass]="'palavra-' + idx" [matTooltip]="getTooltip(palavra)"
+                    [ngStyle]="{ 'width': calcWidth(palavra.quantidade) + '%' }"></div>
             </div>
         </div>
         }

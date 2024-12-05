@@ -1,0 +1,40 @@
+<p class="bold titulos"> Últimas atualizações </p>
+
+<div class="box">
+
+    <div class="container">
+        <div class="cards column">
+            @for(update of groupedUpdates; track update){
+            <div class="row">
+                <div class="lines">
+                    <div class="dot"></div>
+                    <div class="line"></div>
+                </div>
+
+                <div class="card">
+                    <h4>{{ update.data | date: 'dd/MM/yyyy' }}</h4>
+                    @for(uf of update.ufs; track uf) {
+                    <div class="uf-info mb-1">
+                        <p [ngClass]="uf.estado">{{ utility.getUfName(uf.estado) }}</p>
+                        <div class="details">
+                            <span>Última publicação lida às {{ uf.dataArquivo | date: 'HH:mm' }}</span>
+                            <a [href]="uf.linkPagina" target="_blank"> <i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i> </a>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <section class="info">
+        <div class="row">
+            <i class="fa-solid fa-circle-info"></i>
+            <p class="bold">IMPORTANTE</p>
+        </div>
+        <p class="description">Destaca-se que, até o presente momento, alguns estados podem não ter divulgado novas
+            edições.</p>
+    </section>
+</div>

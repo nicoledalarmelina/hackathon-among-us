@@ -1,9 +1,9 @@
-import { Component, Input, LOCALE_ID } from '@angular/core';
-import { DocumentoRecuperado } from '../../../core/models/dashboard/documento-recuperado.model';
-import { TipoDocumento } from '../../../core/enums/tipoDocumento.enum';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
+import { ArquivoRecuperado } from '../../../core/models/dashboard/arquivo-recuperado.model';
+import { Utility } from '../../../core/common/utility';
 
 @Component({
   selector: 'app-file-card',
@@ -13,8 +13,13 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './file-card.component.scss'
 })
 export class FileCardComponent {
-  @Input('documento') documento: DocumentoRecuperado;
+  @Input('documento') set setDocumento(documento: ArquivoRecuperado) {
+    this.documento = documento;
+    this.splitName(documento);
+  }
 
+  utility = Utility;
+  documento: ArquivoRecuperado;
   private meses: string[] = [
     "janeiro",
     "fevereiro",
@@ -31,18 +36,25 @@ export class FileCardComponent {
   ]
 
   formatarData(vigencia: Date): string {
-    let mes = vigencia.getMonth();
+    let dataArquivo = new Date(vigencia);
 
-    return `${vigencia.getDate()} de ${this.meses[mes]} de ${vigencia.getFullYear()}`;
+    let mes = dataArquivo.getMonth();
+
+    return `${dataArquivo.getDate()} de ${this.meses[mes]} de ${dataArquivo.getFullYear()}`;
   }
 
-  getName(uf: string) {
-    switch (uf) {
-      case 'MG': return 'Minas Gerais';
-      case 'PR': return 'Paraná';
-      case 'SP': return 'São Paulo';
+  getResumo(resumoArquivo: string) {
+    if (resumoArquivo == 'Erro ao gerar resumo') return 'Não foi possível gerar o resumo pois o documento possui dados sensíveis.';
+    return resumoArquivo;
+  }
 
-      default: return '';
-    }
+  splitName(documento: ArquivoRecuperado) {
+    let first = documento.nomeArquivo.split('_');
+    let split = [];
+
+    if (first.length > 1) split = (first[1].charAt(0).toUpperCase() + first[1].slice(1)).split('-');
+    else split = (documento.nomeArquivo.charAt(0).toUpperCase() + documento.nomeArquivo.slice(1)).split('-');
+
+    documento.nomeArquivo = split.join(' ');
   }
 }

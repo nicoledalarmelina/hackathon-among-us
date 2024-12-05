@@ -1,8 +1,8 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { PalavraChave } from '../../core/models/palavra-chave/palavra-chave.model';
 import { DatePipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
@@ -12,6 +12,7 @@ import { PalavraChaveService } from '../../services/palavra-chave.service';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { ToastService } from '../../shared/components/toast/toast.service';
 import { CriarPalavraChaveRequest } from '../../core/requests/palavra-chave/criar-palavra-chave.request';
+import { CustomPaginatorIntl } from '../../services/custom-paginator.service';
 
 @Component({
   selector: 'app-palavra-chave',
@@ -25,11 +26,12 @@ import { CriarPalavraChaveRequest } from '../../core/requests/palavra-chave/cria
     BreadcrumbComponent,
     ToastComponent
   ],
+  providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginatorIntl }],
   templateUrl: './palavra-chave.component.html',
   styleUrl: './palavra-chave.component.scss'
 })
 
-export class PalavraChaveComponent {
+export class PalavraChaveComponent implements OnInit {
 
   constructor(private dialog: MatDialog) { }
 
@@ -38,29 +40,13 @@ export class PalavraChaveComponent {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  listaPalavras: PalavraChave[] = [
-    <PalavraChave>{ id: 1, palavra: 'Detran', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ id: 2, palavra: 'departamento estadual de trânsito', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ id: 3, palavra: 'Unidade Fiscal de Referência', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ id: 4, palavra: 'UFR', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'Unidade Padrão Fiscal', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'UPF', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'Diretoria', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'diretor', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'presidente', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'Tecnobank', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'financiamento', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'contrato (s) de financiamento', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'veículo', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'automóvel', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'automóveis', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'credenciamento', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'registradora (s)', criadaPor: 'Among us', criadaEm: new Date },
-    <PalavraChave>{ palavra: 'Detran', criadaPor: 'Among us', criadaEm: new Date },
-  ];
-
+  listaPalavras: PalavraChave[] = [];
   displayedColumns: string[] = ['palavra', 'criadaPor', 'criadaEm', 'acao'];
-  dataSource = new MatTableDataSource<PalavraChave>(this.listaPalavras);;
+  dataSource = new MatTableDataSource<PalavraChave>(this.listaPalavras);
+
+  ngOnInit(): void {
+    this.getKeyrowdsList();
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -84,6 +70,7 @@ export class PalavraChaveComponent {
       next: (response) => {
         if (response.listaPalavras) {
           this.listaPalavras = response.listaPalavras;
+          this.dataSource.data = this.listaPalavras;
         }
       },
       error: (error) => {
@@ -95,9 +82,12 @@ export class PalavraChaveComponent {
   deleteKeyword(id: number) {
     this.palavraChaveService.excluirPalavraChave(id).subscribe({
       next: (response) => {
-        if (response.id) {
-          this.toastService.showToast('success', 'Palavra - chave excluída com sucesso!');
+        if (response) {
+          this.toastService.showToast('success', 'Palavra-chave excluída com sucesso!');
         }
+      },
+      complete: () => {
+        this.getKeyrowdsList();
       },
       error: (error) => {
         this.toastService.showToast('error', error.message);
@@ -108,14 +98,17 @@ export class PalavraChaveComponent {
   addKeyword(keyword: string) {
     let request = <CriarPalavraChaveRequest>{
       palavra: keyword,
-      criadoPor: 'Usuário Among us'
+      criadaPor: 'Usuário Among us'
     };
 
     this.palavraChaveService.criarPalavraChave(request).subscribe({
       next: (response) => {
-        if (response.id) {
+        if (response) {
           this.toastService.showToast('success', 'Palavra-chave incluída com sucesso!');
         }
+      },
+      complete: () => {
+        this.getKeyrowdsList();
       },
       error: (error) => {
         this.toastService.showToast('error', error.message);

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
 import { ListaDocumentosRecuperados } from '../../core/models/dashboard/lista-documentos-recuperados.model';
 import { CommonModule } from '@angular/common';
@@ -9,7 +9,10 @@ import { ListagemDocsUfComponent } from './components/listagem-docs-uf/listagem-
 import { GraficoPalavrasChaveComponent } from './components/grafico-palavras-chave/grafico-palavras-chave.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
-import { EstadosGrafico } from '../../core/models/dashboard/estados-grafico.model';
+import { UltimasAtualizacoesComponent } from './components/ultimas-atualizacoes/ultimas-atualizacoes.component';
+import { DashboardService } from '../../services/dashboard.service';
+import { ToastService } from '../../shared/components/toast/toast.service';
+import { ArquivoRecuperado } from '../../core/models/dashboard/arquivo-recuperado.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,55 +23,29 @@ import { EstadosGrafico } from '../../core/models/dashboard/estados-grafico.mode
     BreadcrumbComponent,
     FileCardComponent,
     ListagemDocsUfComponent,
-    GraficoPalavrasChaveComponent
+    GraficoPalavrasChaveComponent,
+    UltimasAtualizacoesComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
-  listaDocumentos: DocumentoRecuperado[] = [
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'SP',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'PR',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-    <DocumentoRecuperado>{
-      titulo: "Resolução 217/22",
-      uf: 'MG',
-      resumo: "A instituição financeira seleciona uma empresa credenciada que realiza o registro de contrato pelo Detran.",
-      vigencia: new Date(),
-      base64: ""
-    },
-  ];
+  private dashboardService = inject(DashboardService);
+  private toastService = inject(ToastService);
 
-  listaAtualizacao: EstadosGrafico[] = [
-    <EstadosGrafico>{ data: '29/11/2024', estado: 'MG' },
-    <EstadosGrafico>{ data: '29/11/2024', estado: 'SP' },
-    <EstadosGrafico>{ data: '15/11/2024', estado: 'PR' }
-  ]
+  listaDocumentos: ArquivoRecuperado[] = [];
 
   slidePositon: number = 0;
   widthDoc: number = 18;
   index: number = 0;
   totalIndexes: number = 0;
 
-  groupedUpdates: any;
-
   constructor(private router: Router) { }
 
   ngOnInit() {
     this.countDocs();
-    this.groupUpdates();
+    this.getFilesList();
   }
 
   clickRightArrow() {
@@ -80,16 +57,16 @@ export class DashboardComponent {
     this.totalIndexes = Math.ceil(count / 5);
   }
 
-  groupUpdates() {
-    this.groupedUpdates = Object.keys(this.listaAtualizacao.reduce((acc, update) => {
-      (acc[update.data] = acc[update.data] || []).push(update);
-      return acc;
-    }, {} as { [key: string]: EstadosGrafico[] }))
-      .map(data => ({
-        data: data,
-        ufs: this.listaAtualizacao.filter(updt => updt.data === data).map(updt => updt.estado)
-      }));
-
-      console.log(this.groupedUpdates)
+  getFilesList() {
+    this.dashboardService.obterArquivos(0, 3).subscribe({
+      next: (response) => {
+        if (response.listaArquivoProcessado) {
+          this.listaDocumentos = response.listaArquivoProcessado;
+        }
+      },
+      error: (error) => {
+        this.toastService.showToast('error', error.message);
+      }
+    })
   }
 }

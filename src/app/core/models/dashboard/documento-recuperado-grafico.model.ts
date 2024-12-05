@@ -1,5 +1,5 @@
-export class DocumentoRecuperadoGrafico {
+export class DetalhesEstatistica {
     estado: string;
     palavraChave: string;
-    total: number;
+    contagem: number;
 }

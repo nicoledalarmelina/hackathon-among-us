@@ -1,4 +1,4 @@
 export class CriarPalavraChaveRequest {
     palavra: string;
-    criadoPor: string;
+    criadaPor: string;
 }

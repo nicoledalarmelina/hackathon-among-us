@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { PalavraChaveGrafico } from '../../../../core/models/dashboard/palavra-chave-grafico.model';
 import { CommonModule, NgClass } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { DashboardService } from '../../../../services/dashboard.service';
+import { ToastService } from '../../../../shared/components/toast/toast.service';
 
 @Component({
   selector: 'app-grafico-palavras-chave',
@@ -12,24 +14,38 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class GraficoPalavrasChaveComponent implements OnInit {
 
-  listaPalavras: PalavraChaveGrafico[] = [
-    <PalavraChaveGrafico>{ palavra: 'Detran', total: 350 },
-    <PalavraChaveGrafico>{ palavra: 'financiamento', total: 300 },
-    <PalavraChaveGrafico>{ palavra: 'veículo', total: 250 },
-    <PalavraChaveGrafico>{ palavra: 'transferência digital de veículo', total: 200 },
-    <PalavraChaveGrafico>{ palavra: 'recuperação extrajudicial de veículo', total: 150 },
-  ];
+  private dashboardService = inject(DashboardService);
+  private toastService = inject(ToastService);
 
+  listaPalavras: PalavraChaveGrafico[] = [];
   width100: number;
 
   ngOnInit(): void {
-    this.width100 = this.listaPalavras[0].total;
+    this.getKeywordChart();
   }
 
   calcWidth(total: number): number {
     if (total == this.width100) return 100;
 
     return (total * 100) / this.width100;
+  }
+
+  getTooltip(palavra: PalavraChaveGrafico) {
+    return `${palavra.quantidade} documento${palavra.quantidade > 1 ? 's' : ''} recuperado${palavra.quantidade > 1 ? 's' : ''} utilizando essa palavra-chave`;
+  }
+
+  getKeywordChart() {
+    this.dashboardService.obterGraficoPalavraChave().subscribe({
+      next: (response) => {
+        if (response.listaPalavras) {
+          this.listaPalavras = response.listaPalavras;
+          this.width100 = this.listaPalavras[0].quantidade;
+        }
+      },
+      error: (error) => {
+        this.toastService.showToast('error', error.message);
+      }
+    })
   }
 
 }

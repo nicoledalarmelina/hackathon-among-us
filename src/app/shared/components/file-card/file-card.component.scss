@@ -11,7 +11,13 @@
 p {
   font-weight: 700;
   color: #056ab0;
-  text-decoration: underline;
+  font-size: 13px;
+
+  &.codigo {
+    color: #99A1B7;
+    font-size: 10px;
+    font-weight: 500;
+  }
 }
 
 span {
@@ -51,25 +57,31 @@ section {
     font-size: 12px;
     font-weight: 700;
     text-decoration: none;
-
-    &.SP {
-      background-color: #056ab0;
-      color: #FFF;
-    }
-
-    &.PR {
-      background-color: #FFC779;
-      color: #384047;
-    }
-
-    &.MG {
-      background-color: #97CEFF;
-      color: #384047;
-    }
   }
 }
 
 i {
   color: #056ab0;
-  cursor: pointer;
+}
+
+.resumo {
+  text-overflow: ellipsis !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 70px;
+}
+
+.nome-arquivo {
+  height: 45px;
+  text-overflow: ellipsis !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+button {
+  width: 100%;
 }

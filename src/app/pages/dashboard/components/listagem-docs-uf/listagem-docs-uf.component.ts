@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { ListagemDocsUF } from '../../../../core/models/dashboard/listagem-docs-uf.model';
-import { ListaDocumentosRecuperados } from '../../../../core/models/dashboard/lista-documentos-recuperados.model';
+import { Component, inject, OnInit } from '@angular/core';
+import { DashboardService } from '../../../../services/dashboard.service';
+import { ToastService } from '../../../../shared/components/toast/toast.service';
+import { ObterEstatisticasResponse } from '../../../../core/responses/dashboard/obter-dados-documentos-recuperados.response';
+import { DetalhesEstatistica } from '../../../../core/models/dashboard/documento-recuperado-grafico.model';
 
 @Component({
   selector: 'app-listagem-docs-uf',
@@ -9,13 +11,24 @@ import { ListaDocumentosRecuperados } from '../../../../core/models/dashboard/li
   templateUrl: './listagem-docs-uf.component.html',
   styleUrl: './listagem-docs-uf.component.scss'
 })
-export class ListagemDocsUfComponent {
-  listaDocsUf: ListagemDocsUF = <ListagemDocsUF>{
-    total: 6110,
-    listaDocumentos: [
-      <ListaDocumentosRecuperados>{ uf: 'MG', palavraChave: 'Detran', total: 6 },
-      <ListaDocumentosRecuperados>{ uf: 'PR', palavraChave: 'financiamento', total: 6 },
-      <ListaDocumentosRecuperados>{ uf: 'SP', palavraChave: 'veículo', total: 6 },
-    ]
+export class ListagemDocsUfComponent implements OnInit {
+  private dashboardService = inject(DashboardService);
+  private toastService = inject(ToastService);
+
+  estatistica: ObterEstatisticasResponse;
+
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
+    this.dashboardService.obterEstatisticas().subscribe({
+      next: (response) => {
+        this.estatistica = response;
+      },
+      error: (error) => {
+        this.toastService.showToast('error', error.message);
+      }
+    })
   }
 }

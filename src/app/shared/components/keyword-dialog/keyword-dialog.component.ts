@@ -1,12 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ToastService } from '../toast/toast.service';
-import { PalavraChaveService } from '../../../services/palavra-chave.service';
-import { CriarPalavraChaveRequest } from '../../../core/requests/palavra-chave/criar-palavra-chave.request';
 
 @Component({
   selector: 'app-keyword-dialog',

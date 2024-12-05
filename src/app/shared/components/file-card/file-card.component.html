@@ -1,12 +1,20 @@
 <div class="card documento-recuperado">
     <section>
-        <p [ngClass]="documento.uf">{{ getName(documento.uf) }}</p>
-        <i class="fa-solid fa-arrow-up-right-from-square" matTooltip="Ir para diário oficial"></i>
+        <p [ngClass]="documento.estado">{{ utility.getUfName(documento.estado) }}</p>
+        @if (documento.relevante) {
+        <i class="fa-solid fa-circle-check" matTooltip="Documento pode ser relevante"></i>
+        }
     </section>
-    <p class="mt-1">{{ documento.titulo }}</p>
-    <span>{{ documento.resumo }}</span>
-    <span class="data">
-        Vigente desde: {{ formatarData(documento.vigencia) }}
+    <p class="nome-arquivo" [matTooltip]="documento.nomeArquivo">{{ documento.nomeArquivo }}</p>
+    <span class="resumo" [matTooltip]="getResumo(documento.resumoArquivo)">
+        {{ getResumo(documento.resumoArquivo) }}
     </span>
-    <button mat-flat-button>Baixar documento</button>
+    <span class="data">
+        Data da leitura: {{ formatarData(documento.dataArquivo) }}
+    </span>
+    <a [href]="documento.linkPagina" target="_blank">
+        <button mat-flat-button>
+            Acessar documento
+        </button>
+    </a>
 </div>

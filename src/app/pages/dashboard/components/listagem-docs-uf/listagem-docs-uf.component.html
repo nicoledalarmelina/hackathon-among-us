@@ -1,7 +1,9 @@
-<p class="bold titulos"> Documentos recuperados </p>
+<p class="bold titulos"> Documentos recuperados</p>
+
+@if (estatistica) {
 <section class="total">
     <p class="bold">Total</p>
-    <p class="number bold">{{ listaDocsUf.total }}</p>
+    <p class="number bold">{{ estatistica.totalDocumentos }}</p>
 </section>
 
 <section class="values column">
@@ -11,11 +13,12 @@
         <p>Total de docs recuperados</p>
     </div>
 
-    @for(documento of listaDocsUf.listaDocumentos; track documento) {
+    @for(estatisticaUF of estatistica.palavrasChavePorEstado; track estatisticaUF) {
     <div class="row">
-        <p class="bold">{{ documento.uf }}</p>
-        <p class="bold">{{ documento.palavraChave }}</p>
-        <p class="bold highlight">{{ documento.total }}</p>
+        <p class="bold">{{ estatisticaUF.estado }}</p>
+        <p class="bold">{{ estatisticaUF.palavraChave }}</p>
+        <p class="bold highlight">{{ estatisticaUF.contagem }}</p>
     </div>
     }
 </section>
+}

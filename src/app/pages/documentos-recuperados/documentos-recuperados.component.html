@@ -1,42 +1,26 @@
-<div class="documentos-recuperados-page">
-    <app-breadcrumb [page]="'Documentos recuperados'"></app-breadcrumb>
+<div class="documentos-recuperados-page" (window:scroll)="onScroll()">
+    <div class="header-page">
+        <app-breadcrumb [page]="'Documentos recuperados'"></app-breadcrumb>
+        <button mat-stroked-button class="filtro mr-1" (click)="openDialog()"><i class="fa-solid fa-filter"></i>
+            Filtrar</button>
+    </div>
 
-    <cdk-accordion class="accordion mr-1">
-        @for (item of groupedDocs; track item; let index = $index) {
-        <cdk-accordion-item #accordionItem="cdkAccordionItem" class="accordion-item">
-            <button class="accordion-item-header" (click)="accordionItem.toggle()" tabindex="0"
-                [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
-                [attr.aria-controls]="'accordion-body-' + index">
-                {{ item.uf }}
-                <span class="accordion-item-description">
-                    <i class="fa-solid" [ngClass]="accordionItem.expanded ? 'fa-angle-up' : 'fa-angle-down'"></i>
-                </span>
-            </button>
-            @if(accordionItem.expanded) {
-            <div class="accordion-item-body" role="region" [style.display]="accordionItem.expanded ? '' : 'none'"
-                [attr.id]="'accordion-body-' + index" [attr.aria-labelledby]="'accordion-header-' + index">
-
-                <section class="docs-carousel">
-                    @for(documento of item.listaDocumentos; track documento) {
-                    <div class="document">
-                        <app-file-card [documento]="documento"></app-file-card>
-                    </div>
-                    }
-                </section>
-
-            </div>
-            }
-        </cdk-accordion-item>
-        }
-    </cdk-accordion>
-
-    <!-- <div class="row mr-1 mb-1">
+    <div class="row mr-1 mb-1">
         <section class="docs-carousel">
-            @for(documento of listaDocumentos; track documento) {
+            @for(documento of documentosFiltrados; track documento) {
             <div class="document">
                 <app-file-card [documento]="documento"></app-file-card>
             </div>
             }
         </section>
-    </div> -->
+    </div>
+
+    @if(documentosFiltrados.length == 0 && !loading) {
+    <div class="container row">
+        <div class="card column">
+            <img src="./assets/images/icon-vazio.svg" height="100px" width="100px" alt="">
+            <p class="bold">Não foram encontrados documentos</p>
+        </div>
+    </div>
+    }
 </div>

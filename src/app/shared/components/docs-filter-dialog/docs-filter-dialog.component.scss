@@ -1,0 +1,38 @@
+@use '@angular/material' as mat;
+@use '../../../assets/styles/m3-theme.scss';
+
+.docs-filter-dialog {
+  height: 100%;
+  padding: 25px;
+
+  .column {
+    justify-content: space-between;
+    height: 100%;
+
+    .titulo-periodo {
+      font-weight: 500;
+      font-size: 12px;
+    }
+
+    .periodo {
+      padding: 1rem 0;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-size: 14px;
+      font-weight: 700;
+      color: mat.get-theme-color(m3-theme.$light-theme, neutral, 40);
+    }
+
+    div {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+  }
+}

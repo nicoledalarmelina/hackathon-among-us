@@ -1,0 +1,45 @@
+<div class="docs-filter-dialog">
+  <form [formGroup]="formDocsFilter" class="column">
+    <p>Filtrar documentos recuperados</p>
+
+    <section class="filters h-100">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Por UFs</mat-label>
+        <mat-select formControlName="estado" multiple>
+          <mat-select-trigger>
+            {{ utility.getUfName(formDocsFilter.get('estado')?.value?.[0]) || '' }}
+            @if ((formDocsFilter.get('estado')?.value?.length || 0) > 1) {
+            <span class="example-additional-selection">
+              (+{{ (formDocsFilter.get('estado')?.value?.length || 0) - 1 }} {{
+              formDocsFilter.get('estado')?.value?.length
+              === 2 ? 'outra' : 'outras' }})
+            </span>
+            }
+          </mat-select-trigger>
+          @for (uf of listUFs; track uf) {
+          <mat-option [value]="uf">{{ utility.getUfName(uf) }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Por período</mat-label>
+        <mat-date-range-input [formGroup]="formDocsFilter" [rangePicker]="campaignOnePicker">
+          <input matStartDate placeholder="Data inicial" formControlName="dataInicial">
+          <input matEndDate placeholder="Data final" formControlName="dataFinal">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+      </mat-form-field>
+
+      <p><mat-slide-toggle class="mt-1" formControlName="relevante">Por documentos considerados relevantes</mat-slide-toggle></p>
+    </section>
+
+    <div class="w-100 column">
+      <button mat-flat-button [disabled]="formDocsFilter.invalid" class="w-100"
+        [mat-dialog-close]="formDocsFilter.value">Filtrar</button>
+      <button mat-stroked-button class="w-100" (click)="cleanFilter()" [mat-dialog-close]="null">Limpar
+        filtros</button>
+    </div>
+  </form>
+</div>

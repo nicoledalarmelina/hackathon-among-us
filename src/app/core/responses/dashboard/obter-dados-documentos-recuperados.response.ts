@@ -1,6 +1,6 @@
-import { DocumentoRecuperadoGrafico } from "../../models/dashboard/documento-recuperado-grafico.model";
+import { DetalhesEstatistica } from "../../models/dashboard/documento-recuperado-grafico.model";
 
-export class ObterDadosDocumentosRecuperadosResponse {
-  total: number;
-  lista: DocumentoRecuperadoGrafico[];
+export class ObterEstatisticasResponse {
+  totalDocumentos: number;
+  palavrasChavePorEstado: DetalhesEstatistica[];
 }

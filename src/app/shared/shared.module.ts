@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-
+import { MenuService } from './components/menu/menu.service';
 
 
 @NgModule({
@@ -9,10 +9,10 @@ import { CommonModule, DatePipe } from '@angular/common';
     CommonModule
   ],
   exports: [
-    
   ],
   providers: [
-    DatePipe
+    DatePipe,
+    MenuService
   ]
 })
 export class SharedModule { }

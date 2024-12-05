@@ -1,8 +1,12 @@
 export class ArquivoRecuperado {
-  link: string;
-  nome: string;
-  resumo: string;
-  data: string
-  linkDiario: string;
+  id: number;
+  linkPagina: string;
+  palavraChave: string;
+  nomeArquivo: string;
+  resumoArquivo: string;
+  dataArquivo: Date;
+  linkDownload: string;
   estado: string;
+  relevante: boolean;
+  codigo?: string;
 }

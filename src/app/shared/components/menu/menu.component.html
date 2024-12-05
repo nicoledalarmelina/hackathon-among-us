@@ -1,10 +1,26 @@
-<section class="menu">
-    <div class="item" (click)="goTo('./', 'regulatorio');"
-        [ngClass]="{ 'selecionado': selecionado == 'regulatorio' }">
-        <i class="fa-solid fa-section"></i>
-    </div>
-    <div class="item" (click)="goTo('/palavra-chave', 'palavraChave')"
-        [ngClass]="{ 'selecionado': selecionado == 'palavraChave' }">
-        <i class="fa-solid fa-key"></i>
-    </div>
-</section>
+<div class="sidebar">
+    <ul class="list-group flex-column d-flex first-menu" [ngClass]="{ active: activeMenu }">
+        @for(menuItem of menuItems; track menuItem) {
+        <li class="list-group-item" [id]="menuItem.id" [ngClass]="{ active: menuItem.active }"
+            (click)="clickLink($event, menuItem)">
+            <a>
+                <div class="wrapper">
+                    <i [ngClass]="menuItem.icon" aria-hidden="true"> </i>
+                </div>
+
+                <div class="menu-label-item">
+                    <span class="ml-1 align-middle">{{ menuItem.label }}</span>
+                    <p class="arrow-child" *ngIf="menuItem.child">
+                        <i *ngIf="menuItem.child" [ngClass]="menuItem.active ? 'fa-angle-up' : 'fa-angle-down'"
+                            class="fa-solid" aria-hidden="true"></i>
+                    </p>
+                </div>
+            </a>
+
+            @if (menuItem.active && menuItem.child) {
+            <app-menu-items [menuItems]="menuItem.child" [parentId]="menuItem.id"></app-menu-items>
+            }
+        </li>
+        }
+    </ul>
+</div>
